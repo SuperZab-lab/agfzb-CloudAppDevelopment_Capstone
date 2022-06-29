@@ -19,7 +19,7 @@ logger = logging.getLogger(__name__)
 def get_dealerships(request):
     if request.method == "GET":
         context = {}
-        url = "https://isaburtin75-8000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp"
+        url = "https:.../djangoapp"
         # Get dealers from the Cloudant DB
         context["dealerships"] = get_dealers_from_cf(url)
 
