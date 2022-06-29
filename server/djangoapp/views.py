@@ -15,15 +15,36 @@ logger = logging.getLogger(__name__)
 
 
 # Create your views here.
+# View to render the index page with a list of dealerships
+def get_dealerships(request):
+    if request.method == "GET":
+        context = {}
+        url = "https://isaburtin75-8000.theiadocker-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai/djangoapp"
+        # Get dealers from the Cloudant DB
+        context["dealerships"] = get_dealers_from_cf(url)
+
+        # dealer_names = ' '.join([dealer.short_name for dealer in context["dealerships"]])
+        # return HttpResponse(dealer_names)
+
+        return render(request, 'djangoapp/index.html', context)
+
 
 
 # Create an `about` view to render a static about page
 # def about(request):
-# ...
+def about(request):
+    context = {}
+    if request.method == "GET":
+        return render(request, 'djangoapp/about.html', context)
 
 
 # Create a `contact` view to return a static contact page
 #def contact(request):
+def contact(request):
+    context = {}
+    if request.method == "GET":
+        return render(request, 'djangoapp/contact.html', context)
+
 
 # Create a `login_request` view to handle sign in request
 # def login_request(request):
