@@ -48,7 +48,7 @@ def get_dealers_from_cf(url, **kwargs):
             # Create a CarDealer object with values in `doc` object
                 dealer_obj = CarDealer(address=dlr_data.get("address"), city=dlr_data.get("city"), full_name=dlr_data.get("full_name"),
                             id=dlr_data.get("id"), lat=dlr_data.get("lat"), long=dlr_data.get("long"),
-                            short_name=dlr_data.get("short_name"), state=dlr_data.get("state"),
+                            short_name=dlr_data.get("short_name"),
                             st=dlr_data.get("st"), zip=dlr_data.get("zip"))
             
             # dealer_obj = CarDealer(address=dealer["doc"]["address"], city=dealer["doc"]["city"], full_name=dealer["doc"]["full_name"],
