@@ -9,20 +9,32 @@ logger = logging.getLogger(__name__)
 # Create a `get_request` to make HTTP GET requests
 # e.g., response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
 #                                     auth=HTTPBasicAuth('apikey', api_key))
-def get_request(url, api_key, **kwargs):
-    print("GET from {}".format(url))
-    print(kwargs)
+def get_request(url, **kwargs):
+    
+    # If argument contain API KEY
+    api_key = kwargs.get("api_key")
+    print("GET from {} ".format(url))
     try:
-        if api_key is not None:
-            response = requests.get(url, headers={'Content-Type': 'application/json'}, params=kwargs, auth=HTTPBasicAuth('apikey', api_key))
+        if api_key:
+            params = dict()
+            params["text"] = kwargs["text"]
+            params["version"] = kwargs["version"]
+            params["features"] = kwargs["features"]
+            params["return_analyzed_text"] = kwargs["return_analyzed_text"]
+            response = requests.get(url, params=params, headers={'Content-Type': 'application/json'},
+                                    auth=HTTPBasicAuth('apikey', api_key))
         else:
-            response = requests.get(url, headers={'Content-Type': 'application/json'}, params=kwargs)
+            # Call get method of requests library with URL and parameters
+            response = requests.get(url, headers={'Content-Type': 'application/json'},
+                                    params=kwargs)
     except:
-        print("Network Error")
+        # If any error occurs
+        print("Network exception occurred")
+
     status_code = response.status_code
-    print("With status code {}".format(status_code))
+    print("With status {} ".format(status_code))
     json_data = json.loads(response.text)
-    return json_data, status_code
+    return json_data
 
 # Create a `post_request` to make HTTP POST requests
 # e.g., response = requests.post(url, params=kwargs, json=payload)
