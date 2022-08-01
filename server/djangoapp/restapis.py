@@ -49,8 +49,8 @@ def get_dealers_from_cf(url, **kwargs):
     result = "ok"
     # - Call get_request() with specified arguments
     logger.info("Get Dealers from CF")
-    json_result, status_code = get_request(url, None)
-    if status_code == 200 and json_result:
+    json_result = get_request(url)
+    if json_result:
         dealers = json_result['body']
         logger.info(len(dealers))
         for dealer in dealers:
@@ -73,6 +73,7 @@ def get_dealers_from_cf(url, **kwargs):
     else:
         result = "Unknown error"
     return info, result
+       
 
 # Gets a single dealer from the Cloudant DB with the Cloud Function get-dealerships
 # Requires the dealer_id parameter with only a single value
