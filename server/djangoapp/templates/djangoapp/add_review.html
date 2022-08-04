@@ -12,5 +12,69 @@
 </head>
     <body>
     <!--Add review form here -->
+    <div class="card-container">
+
+        <h5 class="card-container-header">
+            Leave a review for {{dealer.full_name}}:
+        </h5>
+
+    <!-- Review Cards -->
+    <div class="card" style="margin: 0 auto; padding: 25px;">
+
+            <form method="post" name="review">
+
+                {% csrf_token %}
+                
+                Review:
+                <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
+                <br>
+    
+                <input class="purchase" type="checkbox" id="purchase" name="purchase" value=true>
+                <label class="form-check-label"> Check here if you purchased a vehicle.</label>
+    
+                <br></br>
+
+                Vehicle Purchased: 
+                <select name="car" id="car" class="car">
+                    {% for car in cars %}
+                    <optionselectedvalue={{car.id}}>{{car.name}}-{{car.make.name}}-{{ car.year|date:"Y" }}</option>
+                    {% endfor %}
+                </select>
+                <br></br>
+                
+                Purchase Date: 
+                <input class="date-own form-control" type="date" name="purchasedate" id="purchasedate" style="width:231px">
+                <br></br>
+                <br></br>
+                <input type="submit" value="Submit Review">
+    
+            </form>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     </body>
+    <script type="text/javascript">
+        $('.date-own').datepicker({
+           format: 'mm/dd/yyyy'
+         });
+   </script>
+
 </html>

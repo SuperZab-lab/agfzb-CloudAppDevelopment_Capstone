@@ -15,7 +15,7 @@ class CarMake(models.Model):
 
 
 class CarModel(models.Model):
-    car_make = models.ForeignKey(CarMake, null=True, on_delete=models.CASCADE)
+    make = models.ForeignKey(CarMake, null=True, on_delete=models.CASCADE) 
     name = models.CharField(null=False, max_length=50)
     id = models.AutoField(primary_key=True)
 
@@ -70,8 +70,8 @@ class CarDealer:
 
 # <HINT> Create a plain Python class `DealerReview` to hold review data
 class DealerReview:
-    def __init__(self, dealership, id, name, purchase, review, car_make=None, car_model=None, car_year=None, purchase_date=None, sentiment="neutral"):
-        self.car_make = car_make
+    def __init__(self, dealership, id, name, purchase, review, make=None, car_model=None, car_year=None, purchase_date=None, sentiment="neutral"):
+        self.make = make
         self.car_model = car_model
         self.car_year = car_year
         self.dealership = dealership
