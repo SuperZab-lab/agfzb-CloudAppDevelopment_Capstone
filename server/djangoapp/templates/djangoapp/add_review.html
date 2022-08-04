@@ -37,7 +37,7 @@
                 Vehicle Purchased: 
                 <select name="car" id="car" class="car">
                     {% for car in cars %}
-                    <optionselectedvalue={{car.id}}>{{car.name}}-{{car.make.name}}-{{ car.year|date:"Y" }}</option>
+                     <option selected value={{car.id}}>{{car}}</option>
                     {% endfor %}
                 </select>
                 <br></br>
