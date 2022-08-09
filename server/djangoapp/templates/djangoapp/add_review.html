@@ -12,65 +12,36 @@
 </head>
     <body>
     <!--Add review form here -->
-    <div class="card-container">
-
-        <h5 class="card-container-header">
-            Leave a review for {{dealer.full_name}}:
-        </h5>
-
-    <!-- Review Cards -->
-    <div class="card" style="margin: 0 auto; padding: 25px;">
-
-            <form method="post" name="review">
-
-                {% csrf_token %}
-                
-                Review:
+    <main class="container">
+        <h1>New review</h1>
+        <h4><i>for {{dealer.full_name}}</i></h4>
+        <br>
+        <!--review form -->
+        <form action="/djangoapp/dealer/{{dealer.id}}/add-review/" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="content"><b>Enter the review content:</b></label>
                 <textarea class="form-control" id="content" name="content" rows="2" required></textarea>
-                <br>
-    
-                <input class="purchase" type="checkbox" id="purchase" name="purchase" value=true>
-                <label class="form-check-label"> Check here if you purchased a vehicle.</label>
-    
-                <br></br>
-
-                Vehicle Purchased: 
-                <select name="car" id="car" class="car">
+            </div>
+            <div class="form-group form-check">
+                <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
+                <label for="purchasecheck">Did you purchase the car? </label>
+            </div>
+            <div class="form-group">
+                <label for="car">Select your car:</label>
+                <select name="car" id="car" class="form-select">
                     {% for car in cars %}
-                     <option selected value={{car.id}}>{{car}}</option>
+                        <option selected value={{car.id}}>{{car.car_make.name}} {{car.name}} {{ car.year }}</option>
                     {% endfor %}
                 </select>
-                <br></br>
-                
-                Purchase Date: 
-                <input class="date-own form-control" type="date" name="purchasedate" id="purchasedate" style="width:231px">
-                <br></br>
-                <br></br>
-                <input type="submit" value="Submit Review">
-    
-            </form>
-
-    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    </body>
+            </div>
+            <div class="form-group" data-provide="datepicker">
+                <label for="purchasedate">Select your purchase date (mm/dd/yyyy):</label>
+                <input class="date-own form-control" type="text" name="purchasedate" id="purchasedate">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </main>
     <script type="text/javascript">
         $('.date-own').datepicker({
            format: 'mm/dd/yyyy'
