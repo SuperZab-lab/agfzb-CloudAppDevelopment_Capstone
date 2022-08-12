@@ -14,9 +14,9 @@ class CarMakeAdmin(admin.ModelAdmin):
 
 # CarModelAdmin class
 class CarModelAdmin(admin.ModelAdmin):
-    list_display = ['make', 'name', 'id', 'model_type', 'year']
-    list_filter = ['model_type', 'make', 'id', 'year',]
-    search_fields = ['car_make', 'name']
+    list_display = ['make', 'name', 'id', 'type', 'year']
+    list_filter = ['type', 'make', 'id', 'year',]
+    search_fields = ['make', 'name']
 
 # Register models here
 admin.site.register(CarMake, CarMakeAdmin)
